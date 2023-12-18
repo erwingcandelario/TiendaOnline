@@ -1,0 +1,17 @@
+.footer {
+	background-color: #deded5;
+}
+.footer_letter {
+	letter-spacing: 2px;
+	color: #818963;
+}
+.footer_links {
+	color: #4f4f4f;
+}
+.footer_table {
+	color: #4f4f4f;
+	border-color: #666;
+}
+.footer_copyright {
+	background-color: rgba(0, 0, 0, 0.2);
+}
