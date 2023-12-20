@@ -1,0 +1,20 @@
+.card_product {
+	width: 18rem;
+}
+.product-img {
+	padding-bottom: 4px;
+	margin-bottom: 12px;
+	height: 250px;
+	overflow: hidden !important;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+}
+.product-img-cover {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.product-link {
+	text-decoration: none;
+	color: unset;
+}
