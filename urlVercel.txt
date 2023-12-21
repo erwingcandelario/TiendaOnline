@@ -1,0 +1,1 @@
+	url: https://tienda-online-blue.vercel.app/
