@@ -12,7 +12,6 @@ const Header = () => {
 			<nav className="header">
 				<div className="container p-4">
 					<div className="row d-flex flex-row">
-						<div className="col-lg-4 col-md-6 mb-4">Reloj</div>
 						<div className="col-lg-4 col-md-12 mb-4">
 							<span className="navbar-brand-ico">
 								<svg
@@ -55,6 +54,11 @@ const Header = () => {
 									</svg>
 								</Link>
 							</div>
+						</div>
+						<div className="col-lg-4 col-md-6 mb-4">
+							<Link to={`adminProduct`} className="btn btn-primary">
+								Administrar producto
+							</Link>
 						</div>
 					</div>
 				</div>

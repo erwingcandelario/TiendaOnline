@@ -1,14 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Loader from '../../components/loader/Loader';
 import ProductList from '../../components/productList/ProductList';
 import Sidebar from '../../components/slider/Slider';
+import UseLoader from '../../hook/UseLoader';
 import { getAllProducts } from '../../services/productListService';
 import './Home.css';
 const HomePage = () => {
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = UseLoader(false);
 	useEffect(() => {
-		getAllProducts.length > 0 ? setLoading(false) : setLoading(true);
-	}, []);
+		setLoading(true);
+		setTimeout(() => {
+			getAllProducts.length > 0 ? setLoading(false) : setLoading(true);
+		}, 1000);
+	}, [setLoading]);
+
 	return (
 		<div className="container my-2">
 			<main>

@@ -3,7 +3,7 @@ import './App.css';
 // react router v6
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // pages
-import { Home, ProductSingle, Search } from './index';
+import { AdminProduct, Home, ProductSingle, Search } from './index';
 // Bootstrap CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
 // Bootstrap Bundle JS
@@ -26,6 +26,8 @@ function App() {
 					<Route path="/product/:id" element={<ProductSingle />} />
 					{/* Buscar Producto */}
 					<Route path="/search/:searchTerm" element={<Search />} />
+					{/* Administrar Producto */}
+					<Route path="/adminProduct" element={<AdminProduct />} />
 				</Routes>
 
 				<Footer />
