@@ -10,12 +10,12 @@ const ProductTable = (props) => (
 			</tr>
 		</thead>
 		<tbody>
-			{props.products.length > 0 ? (
+			{props?.products?.length > 0 ? (
 				props.products.map((product) => (
-					<tr key={product.id}>
-						<td>{product.nombre}</td>
-						<td>{product.empresa}</td>
-						<td>{product.precio}</td>
+					<tr key={product?.id}>
+						<td>{product?.name}</td>
+						<td>{product?.company}</td>
+						<td>{product?.price}</td>
 						<td>
 							<button
 								onClick={() => {
@@ -26,7 +26,7 @@ const ProductTable = (props) => (
 								Editar
 							</button>
 							<button
-								onClick={() => props.deleteProduct(product.id)}
+								onClick={() => props.deleteProduct(product?.id)}
 								className="button muted-button"
 							>
 								Eliminar

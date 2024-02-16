@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ProductList from '../../components/productList/ProductList';
-import { getAllProducts } from '../../services/productListService';
+import { getList } from '../../services/productListService';
 
 const SearchPage = () => {
 	const { searchTerm } = useParams();
 	useEffect(() => {}, [searchTerm]);
-	const searchProducts = getAllProducts.filter(
+	const searchProducts = getList.filter(
 		(item) => item.empresa.toLocaleLowerCase().trim() === searchTerm.toLocaleLowerCase().trim()
 	);
 	if (searchProducts.length === 0) {

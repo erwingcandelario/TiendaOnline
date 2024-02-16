@@ -1,12 +1,23 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Modal from '../../components/modal/Modal';
-import { getAllProducts } from '../../services/productListService';
+import { product } from '../../services/productListService';
+
 const ProductSinglePage = () => {
 	const { id } = useParams();
 	const [modalShow, setModalShow] = useState(false);
-
-	const product = getAllProducts.filter((item) => item.id === Number(id))[0];
+	const [state, setState] = useState();
+	const fetchData = useCallback(async () => {
+		const data = await product(id);
+		setState(data);
+	});
+	useEffect(() => {
+		//setLoading(true);
+		fetchData();
+		//state?.products.length > 0 ? setLoading(false) : setLoading(true);
+	}, [fetchData, state]);
+	console.log('state Ultimo', state);
+	const productModel = state;
 	return (
 		<div className="container my-2">
 			<main>
@@ -16,21 +27,21 @@ const ProductSinglePage = () => {
 							<div className="col-md-6">
 								<img
 									className="img-responsive productSingle_img ms-5"
-									src={product.imagen}
-									alt={product.nombre}
+									src={productModel?.urlImage}
+									alt={productModel?.name}
 								/>
 							</div>
 							<div className="col-md-6">
 								<form>
-									<legend>{product.nombre}</legend>
+									<legend>{productModel?.name}</legend>
 									<div className="mb-3">
-										<label className="form-label">Empresa {product.empresa}</label>
+										<label className="form-label">Empresa {productModel?.company}</label>
 									</div>
 									<div className="mb-3">
-										<label className="form-label"> valor {product.precio} </label>
+										<label className="form-label"> valor {productModel?.price} </label>
 									</div>
 									<div className="mb-3 form-check">
-										<p> {product.descripcionLarga}</p>
+										<p> {productModel?.largeDescription}</p>
 									</div>
 									<button
 										type="button"

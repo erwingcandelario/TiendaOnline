@@ -1,27 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import AddProductForm from '../../components/form/AddProductForm';
 import EditProductForm from '../../components/form/EditProductForm';
 import Loader from '../../components/loader/Loader';
 import ProductTable from '../../components/table/ProductTable';
 import UseLoader from '../../hook/UseLoader';
-import { getAllProducts } from '../../services/productListService';
+import { getList } from '../../services/productListService';
 const AdminProduct = () => {
 	const [loading, setLoading] = UseLoader(false);
+	const [state, setState] = useState();
+	const fetchData = useCallback(async () => {
+		const data = await getList();
+		setState(data);
+	}, []);
+
 	useEffect(() => {
 		setLoading(true);
-		setTimeout(() => {
-			getAllProducts.length > 0 ? setLoading(false) : setLoading(true);
-		}, 1000);
-	}, [setLoading]);
-	const productData = getAllProducts;
+		fetchData();
+		state?.products.length > 0 ? setLoading(false) : setLoading(true);
+	}, [fetchData, setLoading, state?.products.length]);
+
+	const productData = state?.products;
+
 	const initialFormState = {
 		id: null,
-		nombre: '',
-		empresa: '',
-		precio: '',
-		descripcionCorta: '',
-		imagen: '',
-		descripcionLarga: '',
+		name: '',
+		company: '',
+		price: '',
+		description: '',
+		urlImage: '',
+		largeDescription: '',
 	};
 
 	const [products, setProducts] = useState(productData);
@@ -37,12 +44,12 @@ const AdminProduct = () => {
 		setEditing(true);
 		setCurrentProduct({
 			id: product.id,
-			nombre: product.nombre,
-			empresa: product.empresa,
-			precio: product.precio,
-			descripcionCorta: product.descripcionCorta,
-			imagen: product.imagen,
-			descripcionLarga: product.descripcionLarga,
+			name: product.name,
+			company: product.company,
+			price: product.price,
+			description: product.description,
+			urlImage: product.urlImage,
+			largeDescription: product.largeDescription,
 		});
 	};
 
@@ -83,7 +90,7 @@ const AdminProduct = () => {
 					{loading ? (
 						<Loader />
 					) : (
-						<ProductTable products={products} editRow={editRow} deleteProduct={deleteProduct} />
+						<ProductTable products={productData} editRow={editRow} deleteProduct={deleteProduct} />
 					)}
 				</div>
 			</div>

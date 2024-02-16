@@ -9,14 +9,14 @@ const Product = ({ product }) => {
 				<div className="product-img">
 					<img
 						className="card-img-top product-img-cover"
-						src={product?.imagen}
-						alt={product.nombre}
+						src={product?.urlImage}
+						alt={product?.name}
 					/>
 				</div>
 				<div className="card-body">
-					<h5 className="card-title">{product?.empresa}</h5>
-					<h6 className="card-text">{product?.nombre}</h6>
-					<p className="card-text">{product?.descripcionCorta}</p>
+					<h5 className="card-title">{product?.company}</h5>
+					<h6 className="card-text">{product?.name}</h6>
+					<p className="card-text">{product?.description}</p>
 				</div>
 			</div>
 		</Link>
