@@ -3,15 +3,16 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import { createProduct } from '../../services/productListService';
 const AddProductForm = (props) => {
 	const initialFormState = {
-		id: null,
-		nombre: '',
-		empresa: '',
-		precio: '',
-		descripcionCorta: '',
-		imagen: '',
-		descripcionLarga: '',
+		name: '',
+		company: '',
+		price: '',
+		description: '',
+		urlImage: '',
+		largeDescription: '',
+		score: '',
 	};
 	const [product, setProduct] = useState(initialFormState);
 
@@ -25,9 +26,15 @@ const AddProductForm = (props) => {
 		<Form
 			onSubmit={(event) => {
 				event.preventDefault();
-				if (!product.nombre || !product.empresa) return;
+				if (!product.name || !product.company) return;
 
-				props.addProduct(product);
+				const fetchData = async () => {
+					const data = await createProduct(product);
+					props.addProduct(data);
+				};
+
+				fetchData();
+
 				setProduct(initialFormState);
 			}}
 		>
@@ -36,12 +43,7 @@ const AddProductForm = (props) => {
 					Nombre Producto
 				</Form.Label>
 				<Col sm="10">
-					<Form.Control
-						type="text"
-						name="nombre"
-						value={product.nombre}
-						onChange={handleInputChange}
-					/>
+					<Form.Control type="text" name="name" value={product.name} onChange={handleInputChange} />
 				</Col>
 			</Form.Group>
 			<Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -51,8 +53,8 @@ const AddProductForm = (props) => {
 				<Col sm="10">
 					<Form.Control
 						type="text"
-						name="empresa"
-						value={product.empresa}
+						name="company"
+						value={product.company}
 						onChange={handleInputChange}
 					/>
 				</Col>
@@ -64,8 +66,8 @@ const AddProductForm = (props) => {
 				<Col sm="10">
 					<Form.Control
 						type="text"
-						name="precio"
-						value={product.precio}
+						name="price"
+						value={product.price}
 						onChange={handleInputChange}
 					/>
 				</Col>
@@ -77,8 +79,8 @@ const AddProductForm = (props) => {
 				<Col sm="10">
 					<Form.Control
 						type="text"
-						name="descripcionCorta"
-						value={product.descripcionCorta}
+						name="description"
+						value={product.description}
 						onChange={handleInputChange}
 					/>
 				</Col>
@@ -90,8 +92,8 @@ const AddProductForm = (props) => {
 				<Col sm="10">
 					<Form.Control
 						type="text"
-						name="imagen"
-						value={product.imagen}
+						name="urlImage"
+						value={product.urlImage}
 						onChange={handleInputChange}
 					/>
 				</Col>
@@ -103,8 +105,21 @@ const AddProductForm = (props) => {
 				<Col sm="10">
 					<Form.Control
 						type="text"
-						name="descripcionLarga"
-						value={product.descripcionLarga}
+						name="largeDescription"
+						value={product.largeDescription}
+						onChange={handleInputChange}
+					/>
+				</Col>
+			</Form.Group>
+			<Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
+				<Form.Label column sm="2">
+					Stock
+				</Form.Label>
+				<Col sm="10">
+					<Form.Control
+						type="text"
+						name="score"
+						value={product.score}
 						onChange={handleInputChange}
 					/>
 				</Col>

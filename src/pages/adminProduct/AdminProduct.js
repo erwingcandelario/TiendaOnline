@@ -4,7 +4,7 @@ import EditProductForm from '../../components/form/EditProductForm';
 import Loader from '../../components/loader/Loader';
 import ProductTable from '../../components/table/ProductTable';
 import UseLoader from '../../hook/UseLoader';
-import { getList } from '../../services/productListService';
+import { delProduct, getList } from '../../services/productListService';
 const AdminProduct = () => {
 	const [loading, setLoading] = UseLoader(false);
 	const [state, setState] = useState();
@@ -36,8 +36,8 @@ const AdminProduct = () => {
 	const [currentProduct, setCurrentProduct] = useState(initialFormState);
 
 	const addProduct = (product) => {
-		product.id = products.length + 1;
-		setProducts([...products, product]);
+		productData.push(product);
+		setProducts(productData);
 	};
 
 	const editRow = (product) => {
@@ -55,7 +55,14 @@ const AdminProduct = () => {
 
 	const deleteProduct = (id) => {
 		setEditing(false);
-		setProducts(products.filter((product) => product.id !== id));
+		const delfetchData = async () => {
+			let data = await delProduct(id);
+			if (data) {
+				fetchData();
+			}
+		};
+
+		delfetchData();
 	};
 
 	const updateProduct = (id, updatedProduct) => {
