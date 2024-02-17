@@ -1,15 +1,26 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ProductList from '../../components/productList/ProductList';
+import UseLoader from '../../hook/UseLoader';
 import { getList } from '../../services/productListService';
-
 const SearchPage = () => {
+	const [loading, setLoading] = UseLoader(false);
 	const { searchTerm } = useParams();
-	useEffect(() => {}, [searchTerm]);
-	const searchProducts = getList.filter(
-		(item) => item.empresa.toLocaleLowerCase().trim() === searchTerm.toLocaleLowerCase().trim()
-	);
-	if (searchProducts.length === 0) {
+	const [state, setState] = useState();
+
+	const fetchData = useCallback(async () => {
+		const data = await getList(searchTerm);
+		setState(data);
+	}, []);
+	useEffect(() => {
+		setLoading(true);
+		fetchData();
+		state?.products.length > 0 ? setLoading(false) : setLoading(true);
+	}, [fetchData, setLoading, state?.products.length]);
+
+	const searchProducts = state?.products;
+
+	if (searchProducts?.length === 0) {
 		return (
 			<div
 				className="container"
