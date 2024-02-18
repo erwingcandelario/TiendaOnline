@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import Loader from '../../components/loader/Loader';
 import ProductList from '../../components/productList/ProductList';
 import Sidebar from '../../components/slider/Slider';
+import { LeftSideBar } from "../../components/leftSideBar/LeftSideBar";
 import UseLoader from '../../hook/UseLoader';
 import { getList } from '../../services/productListService';
 import './Home.css';
@@ -24,13 +25,26 @@ const HomePage = () => {
 	return (
 		<div className="container my-2">
 			<main>
-				<Sidebar />
-				<div className="container p-2">
-					<div className="home-title-md">
-						<h3>Ver nuestros productos</h3>
-					</div>
-					{loading ? <Loader /> : <ProductList products={state?.products} />}
-				</div>
+			<Sidebar />
+        <div className="container p-2">
+          <div className="home-title-md">
+            <h3>Ver nuestros productos</h3>
+          </div>
+          <div className="container">
+            <div className="row">
+              <div className="col-3">
+                <LeftSideBar products={state?.products} />
+              </div>
+              <div className="col-9">
+                {loading ? (
+                  <Loader />
+                ) : (
+                  <ProductList products={state?.products} />
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
 			</main>
 		</div>
 	);
