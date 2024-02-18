@@ -50,6 +50,7 @@ const AdminProduct = () => {
 			description: product.description,
 			urlImage: product.urlImage,
 			largeDescription: product.largeDescription,
+			score: product.score,
 		});
 	};
 
@@ -65,9 +66,11 @@ const AdminProduct = () => {
 		delfetchData();
 	};
 
-	const updateProduct = (id, updatedProduct) => {
+	const updateProduct = (data) => {
 		setEditing(false);
-		setProducts(products.map((product) => (product.id === id ? updatedProduct : product)));
+		if (data) {
+			fetchData();
+		}
 	};
 
 	return (

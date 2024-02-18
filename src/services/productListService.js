@@ -70,4 +70,21 @@ async function delProduct(id) {
 		throw error;
 	}
 }
-export { createProduct, delProduct, getList, product };
+
+async function editProduct(product) {
+	try {
+		const response = await fetch('http://localhost:8088/products/' + product.id, {
+			method: 'PUT',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(product),
+		})	.then((res) => res.json())
+		.then((response) => response);
+		console.log('editProduct =>', response);
+		return response;
+	} catch (error) {
+		console.error('Error editProduct =>', error);
+		throw error;
+	}
+}
+
+export { createProduct, delProduct, getList, product, editProduct };
