@@ -1,22 +1,14 @@
 async function getList(
-	name,
-	company,
-	price,
-	description,
-	urlImage,
-	largeDescription,
-	score,
-	aggregate
+	name = '',
+	company = '',
+	price = '',
+	description = '',
+	urlImage = '',
+	largeDescription = '',
+	score = '',
+	aggregate = ''
 ) {
 	try {
-		name = name === undefined ? '' : name;
-		company = company === undefined ? '' : company;
-		price = price === undefined ? '' : price;
-		description = description === undefined ? '' : description;
-		urlImage = urlImage === undefined ? '' : urlImage;
-		largeDescription = largeDescription === undefined ? '' : largeDescription;
-		score = score === undefined ? '' : score;
-		aggregate = aggregate === undefined ? '' : aggregate;
 		const response = await fetch(
 			`http://localhost:8088/products?name=${name}&company=${company}&price=${price}&description=${description}&urlImage=${urlImage}&largeDescription=${largeDescription}&score=${score}&aggregate=${aggregate}`
 		)
@@ -29,6 +21,19 @@ async function getList(
 		throw error;
 	}
 }
+
+async function searchServiceProduct(url = '') {
+	try {
+		const response = await fetch(url)
+			.then((res) => res.json())
+			.then((response) => response);
+		return response;
+	} catch (error) {
+		console.error('Error product =>', error);
+		throw error;
+	}
+}
+
 async function product(id) {
 	try {
 		const response = await fetch('http://localhost:8088/products/' + id)
@@ -77,8 +82,9 @@ async function editProduct(product) {
 			method: 'PUT',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(product),
-		})	.then((res) => res.json())
-		.then((response) => response);
+		})
+			.then((res) => res.json())
+			.then((response) => response);
 		console.log('editProduct =>', response);
 		return response;
 	} catch (error) {
@@ -87,4 +93,4 @@ async function editProduct(product) {
 	}
 }
 
-export { createProduct, delProduct, getList, product, editProduct };
+export { createProduct, delProduct, editProduct, getList, product, searchServiceProduct };
