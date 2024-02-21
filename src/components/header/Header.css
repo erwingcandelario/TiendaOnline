@@ -1,11 +1,16 @@
 .header {
-	background-color: #deded5;
+  background-color: #deded5;
 }
 .header_fw-7 {
-	font-weight: 700;
-	font-size: x-large;
+  font-weight: 700;
+  font-size: x-large;
+  transition: color 0.3s, font-size 0.3s;
+}
+.header_fw-7:hover {
+  cursor: pointer;
+  font-size: 26px;
 }
 .header-link {
-	text-decoration: none;
-	color: unset;
+  text-decoration: none;
+  color: unset;
 }

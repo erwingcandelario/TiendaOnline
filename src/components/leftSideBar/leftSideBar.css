@@ -1,22 +1,23 @@
-.left-side-bar{
-    margin-top: 8px;
-    background-color: #DEDED5;
-    
+.left-side-bar {
+  margin-top: 8px;
+  background-color: #deded5;
 }
 
 .card {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Cambia los valores según lo que desees */
-    border-radius: 8px; /* Cambia el radio de borde según lo que desees */
-    transition: box-shadow 0.3s ease-in-out; /* Agrega una transición suave para el efecto de sombra */
-  }
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Cambia los valores según lo que desees */
+  border-radius: 8px; /* Cambia el radio de borde según lo que desees */
+  transition: box-shadow 0.3s ease-in-out; /* Agrega una transición suave para el efecto de sombra */
+}
 
-  .link-item {
-    text-decoration: none;
-    color: inherit;
-    transition: color 0.3s ease-in-out;
-  }
+.list-group-item {
+  text-decoration: none;
+  transition: color 0.3s, font-size 0.3s;
+}
 
-.link-item:hover{
-    text-decoration: none;
-    color: inherit;
+.list-group-item:hover {
+  text-decoration: none;
+  font-size: 16px;
+  color: #000;
+  cursor: pointer;
+  background-color: blanchedalmond;
 }
