@@ -17,7 +17,6 @@ const ProductSinglePage = () => {
 		fetchData(id);
 	}, []);
 
-	console.log('state Ultimo', state);
 	const productModel = state;
 	return (
 		<div className="container my-2">

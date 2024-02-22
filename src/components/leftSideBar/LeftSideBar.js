@@ -2,8 +2,6 @@ import React from 'react';
 import './leftSideBar.css';
 
 export const LeftSideBar = (props) => {
-	console.log('LeftSideBar', props);
-
 	return (
 		<div className="card left-side-bar">
 			<div className="card-body">

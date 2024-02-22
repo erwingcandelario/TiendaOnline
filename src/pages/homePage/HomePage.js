@@ -43,8 +43,7 @@ const HomePage = () => {
 		aggs?.aggs?.length,
 		aggsResult?.products.length,
 	]);
-	console.log('state', state);
-	console.log('aggsResult', aggsResult);
+
 	const prueba = aggsResult?.products;
 
 	const searchProduct = (data) => {

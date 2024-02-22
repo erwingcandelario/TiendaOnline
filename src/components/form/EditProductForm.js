@@ -20,7 +20,6 @@ const EditProductForm = (props) => {
 
 	const handleInputChange = (event) => {
 		const { name, value } = event.target;
-		console.log(event.target);
 		setProduct({ ...product, [name]: value });
 	};
 
@@ -37,7 +36,6 @@ const EditProductForm = (props) => {
 
 				const fetchData = async () => {
 					const data = await editProduct(product);
-					console.log(data);
 					props.updateProduct(data);
 				};
 
@@ -51,12 +49,7 @@ const EditProductForm = (props) => {
 					Nombre Producto
 				</Form.Label>
 				<Col sm="10">
-					<Form.Control
-						type="text"
-						name="name"
-						value={product.name}
-						onChange={handleInputChange}
-					/>
+					<Form.Control type="text" name="name" value={product.name} onChange={handleInputChange} />
 				</Col>
 			</Form.Group>
 			<Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">

@@ -18,7 +18,6 @@ const AddProductForm = (props) => {
 
 	const handleInputChange = (event) => {
 		const { name, value } = event.target;
-		console.log(event.target);
 		setProduct({ ...product, [name]: value });
 	};
 
