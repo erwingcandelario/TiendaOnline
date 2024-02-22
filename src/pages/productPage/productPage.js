@@ -7,15 +7,16 @@ const ProductSinglePage = () => {
 	const { id } = useParams();
 	const [modalShow, setModalShow] = useState(false);
 	const [state, setState] = useState();
-	const fetchData = useCallback(async () => {
+
+	const fetchData = useCallback(async (id) => {
 		const data = await product(id);
 		setState(data);
 	});
+
 	useEffect(() => {
-		//setLoading(true);
-		fetchData();
-		//state?.products.length > 0 ? setLoading(false) : setLoading(true);
-	}, [fetchData, state]);
+		fetchData(id);
+	}, []);
+
 	console.log('state Ultimo', state);
 	const productModel = state;
 	return (
