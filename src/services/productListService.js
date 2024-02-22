@@ -93,4 +93,27 @@ async function editProduct(product) {
 	}
 }
 
-export { createProduct, delProduct, editProduct, getList, product, searchServiceProduct };
+async function saveProduct(product) {
+    try {
+		
+		const requestBody = {
+            productId: product,//"62TKtI0BHDYCIF8TWcJn",
+            quantity: 1
+        };
+        const response = await fetch("http://localhost:8089/orden", {   
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestBody),
+        });
+        console.log('saveOrden response =>', response);
+        return response;
+    } catch (error) {
+        console.error('Error saveOrden =>', error);
+        throw error;
+    }
+}
+
+
+export { createProduct, delProduct, editProduct, getList, product, searchServiceProduct, saveProduct };
