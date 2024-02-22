@@ -10,7 +10,7 @@ async function getList(
 ) {
 	try {
 		const response = await fetch(
-			`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/products?name=${name}&company=${company}&price=${price}&description=${description}&urlImage=${urlImage}&largeDescription=${largeDescription}&score=${score}&aggregate=${aggregate}`
+			`${process.env.REACT_APP_API_URL}/products?name=${name}&company=${company}&price=${price}&description=${description}&urlImage=${urlImage}&largeDescription=${largeDescription}&score=${score}&aggregate=${aggregate}`
 		)
 			.then((res) => res.json())
 			.then((response) => response);
@@ -34,7 +34,7 @@ async function searchServiceProduct(url = '') {
 async function product(id) {
 	try {
 		const response = await fetch(
-			`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/products/` + id
+			`${process.env.REACT_APP_API_URL}/products/` + id
 		)
 			.then((res) => res.json())
 			.then((response) => response);
@@ -47,7 +47,7 @@ async function product(id) {
 async function createProduct(product) {
 	try {
 		const response = await fetch(
-			`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/products/`,
+			`${process.env.REACT_APP_API_URL}/products/`,
 			{
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
@@ -64,7 +64,7 @@ async function createProduct(product) {
 async function delProduct(id) {
 	try {
 		const response = await fetch(
-			`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/products/` + id,
+			`${process.env.REACT_APP_API_URL}/products/` + id,
 			{
 				method: 'DELETE',
 			}
@@ -78,7 +78,7 @@ async function delProduct(id) {
 async function editProduct(product) {
 	try {
 		const response = await fetch(
-			`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/products/` + product.id,
+			`${process.env.REACT_APP_API_URL}/products/` + product.id,
 			{
 				method: 'PUT',
 				headers: { 'Content-Type': 'application/json' },
