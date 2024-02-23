@@ -100,7 +100,7 @@ async function saveProduct(product) {
             productId: product,//"62TKtI0BHDYCIF8TWcJn",
             quantity: 1
         };
-        const response = await fetch("http://localhost:8089/orden", {   
+        const response = await fetch(`${process.env.REACT_APP_API_URL_OPERADOR}/orders`, {   
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
